@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Discord Nitro Gift Generator</title>
+      <link rel="icon" href="https://pngimg.com/d/discord_PNG12.png" type="image/x-icon">
+
+      <meta property="og:title" content="Discord Nitro Gift Generator by @court.lol">
+      <meta property="og:description" content="Generate realistic Discord Nitro gifts and prank your friends *made by lighty 🥏">
+      <meta property="og:image" content="https://cdn.discordapp.com/attachments/1107238713408376864/1116349253644718200/478756463d2124fa53a12b3b2d08410f.png?ex=67374442&is=6735f2c2&hm=e4c0a9cc0beacdd7d13e99cdb494e55aa51ff62935bb2f09932b4a5f4f602231&">
+      <meta property="og:type" content="website">
+
+      <style>
+          body {
+              background-color: #36393f;
+              font-family: 'Arial', sans-serif;
+              color: #dcddde;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              margin: 0;
+              padding: 10px;
+              overflow: hidden;
+          }
+          .input-container {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              width: 100%;
+              max-width: 700px;
+              margin: 0 auto; /* Center the container */
+          }
+          .discord-container {
+              background-color: #1a1a1e;
+              border-radius: 8px;
+              padding: 12px;
+              width: 700px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+              margin-bottom: 6px;
+          }
+          .discord-message, .discord-reply {
+              display: flex;
+              margin-bottom: 16px;
+          }
+          .avatar {
+              border-radius: 50%;
+              width: 50px;
+              height: 50px;
+              margin-right: 8px;
+              object-fit: cover;
+          }
+          .message-content, .reply-content {
+              flex: 1;
+          }
+          .username {
+              font-weight: 500;
+              color: #ffffff;
+              font-size: 18px;
+              display: inline;
+              margin-right: 4px;
+          }
+          .timestamp {
+              color: #72767d;
+              font-size: 12px;
+              margin-left: 2px;
+          }
+          .gift-link {
+              color: #00aff4;
+              font-size: 16px;
+              margin: 0;
+              line-height: 1.2;
+          }
+          .blurred-text {
+              filter: blur(3px);
+              background: #202225;
+              padding: 4px 7px;
+              border-radius: 8px;
+              font-size: 14px;
+          }
+          .embed {
+              display: flex;
+              background-color: #202225;
+              border-radius: 8px;
+              margin-top: 4px;
+              padding: 20px;
+              border: 1px solid #2c2f33;
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+          }
+          .embed-content {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 100%;
+          }
+          .embed-text {
+              color: #ffffff;
+              font-size: 16px;
+              line-height: 1.4;
+          }
+          .embed-button {
+              background-color: #5865f2;
+              color: #ffffff;
+              border: none;
+              border-radius: 4px;
+              padding: 12px 20px;
+              cursor: pointer;
+              font-size: 14px;
+              font-weight: bold;
+              margin-top: 60px;
+          }
+          .embed-button:hover {
+              background-color: #4752c4;
+          }
+          .nitro-image {
+              width: 220px;
+              border-radius: 6px;
+          }
+          .input-field {
+              margin-bottom: 6px;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center; /* Center the input fields */
+          }
+          .input-field label {
+              display: block;
+              margin-bottom: 4px;
+          }
+          .input-field input {
+              padding: 8px;
+              border: 1px solid #72767d;
+              border-radius: 4px;
+              width: 100%;
+              background-color: #2f3136;
+              color: #ffffff;
+              outline: none;
+              font-size: 14px;
+              margin-bottom: 2px;
+              max-width: 300px; /* Set the max width for input */
+          }
+          /* Adjusted CSS to reduce space */
+          .message-content p, .reply-content p {
+              margin: 0; /* Remove extra margin from paragraphs */
+              line-height: 1.2; /* Adjust line height to make text closer */
+          }
+      </style>
+  </head>
+  <body>
+      <!-- Input fields for customization -->
+      <div class="input-container">
+          <div class="input-field">
+              <label for="username1">Username:</label>
+              <input type="text" id="username1" value="court" oninput="updateUsername('username1', 'usernameDisplay1')">
+          </div>
+          <div class="input-field">
+              <label for="username2">Username:</label>
+              <input type="text" id="username2" value="lighty" oninput="updateUsername('username2', 'usernameDisplay2')">
+          </div>
+          <div class="input-field">
+              <label for="avatar1">Avatar URL:</label>
+              <input type="text" id="avatar1" value="#" oninput="updateAvatar('avatar1', 'avatarImg1')">
+          </div>
+          <div class="input-field">
+              <label for="avatar2">Avatar URL:</label>
+              <input type="text" id="avatar2" value="#" oninput="updateAvatar('avatar2', 'avatarImg2')">
+          </div>
+      </div>
+  
+      <!-- Discord Invite Button with a container and inline styles -->
+      <div style="margin-top: 30px; display: flex; justify-content: center; align-items: center;">
+          <a href="https://discord.gg/lighty" target="_blank" style="text-decoration: none; display: flex; justify-content: center; align-items: center; background: linear-gradient(45deg, #f258ea, #cc00ff); padding: 12px 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+              <div style="font-size: 18px; color: #ffffff; font-weight: bold; padding: 8px 12px; background-color: rgba(0, 0, 0, 0.3); border-radius: 8px;">
+                  *join us
+              </div>
+          </a>
+      </div>
+  
+      <!-- Discord message container -->
+      <div class="discord-container">
+          <!-- Main Message -->
+          <div class="discord-message" style="margin-bottom: 16px;">
+              <img id="avatarImg1" src="https://cdn.discordapp.com/embed/avatars/0.png" class="avatar" alt="User Avatar">
+              <div class="message-content">
+                  <p><span class="username" id="usernameDisplay1">court</span><span class="timestamp">09:24 PM</span></p>
+                  <p class="gift-link">https://discord.gift/<span class="blurred-text">randomString12345</span></p>
+                  <div class="embed">
+                      <div class="embed-content">
+                          <div>
+                              <p class="embed-text"><strong>You've been gifted a subscription!</strong><br>Hmm, it seems someone already claimed this gift.</p>
+                              <button class="embed-button">Claim</button>
+                          </div>
+                          <img src="https://i.ibb.co/R6ZZvjp/Nitro-Boost.png" class="nitro-image" alt="Nitro Gift Image">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Reply Message -->
+          <div class="discord-reply" style="margin-top: 12px;">
+              <img id="avatarImg2" src="https://cdn.discordapp.com/embed/avatars/1.png" class="avatar" alt="Reply Avatar">
+              <div class="reply-content">
+                  <p><span class="username" id="usernameDisplay2">lighty</span><span class="timestamp">09:26 PM</span></p>
+                  <p>thank you so much.</p>
+              </div>
+          </div>
+      </div>
+  
+      <script>
+          function updateUsername(inputId, displayId) {
+              document.getElementById(displayId).textContent = document.getElementById(inputId).value;
+          }
+  
+          function updateAvatar(inputId, imgId) {
+              document.getElementById(imgId).src = document.getElementById(inputId).value;
+          }
+      </script>
+  </body>
+  </html>
